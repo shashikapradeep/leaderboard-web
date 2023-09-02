@@ -1,7 +1,7 @@
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import {styled} from '@mui/material';
-import Leaderboard from '../organism/Leaderboard';
+import Leaderboard from '../organism/leaderboard/Leaderboard';
 
 const StackItem = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
