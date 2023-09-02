@@ -5,3 +5,7 @@ export const SKIP_ERROR_CODES = [521];
 export const DEFAULT_ERROR_MESSAGE = 'Something Went Wrong!';
 export const INVALID_REQUEST_ERROR_MESSAGE = 'Invalid Request!';
 export const UNKNOWN_ERROR_MESSAGE = 'Unknown Error Occurred';
+
+//theme
+export const LIGHT_THEME = 'light';
+export const DARK_THEME = 'dark';

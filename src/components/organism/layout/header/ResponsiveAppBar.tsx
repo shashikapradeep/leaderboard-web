@@ -13,18 +13,24 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import DayAndNightMaterialUISwitch from "../../../atomic/Switch/DayAndNightSwitch";
-// import {RootState} from "../../../../state/store";
-// import {useSelector} from "react-redux";
-//import {useSelector} from "react-redux";
+import {RootState} from "../../../../state/store";
+import {useSelector} from "react-redux";
+import {changeTheme} from "../../../../features/app/appSlice";
+import {useAppDispatch} from "../../../../state/hook";
+import {LIGHT_THEME, DARK_THEME} from "../../../../configs/constants";
 
 const pages = ['Home', 'Leaderboard', 'Contact us'];
 const settings = ['Profile', 'Account', 'Logout'];
 
 function ResponsiveAppBar() {
+
+    const dispatch = useAppDispatch();
+
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
-   // const app = useSelector((state:RootState) => state.app);
+   const theme:string = useSelector((state:RootState) => state.app.theme);
+   console.log(theme);
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget);
     };
@@ -42,6 +48,7 @@ function ResponsiveAppBar() {
 
     const handleThemeOnchange = (event: any) => {
         console.log(event.target.checked);
+        dispatch(changeTheme({theme: event.target.checked ? DARK_THEME : LIGHT_THEME}));
     };
 
     return (
@@ -162,7 +169,7 @@ function ResponsiveAppBar() {
                                 </MenuItem>
                             ))}
 
-                            <DayAndNightMaterialUISwitch onChange={handleThemeOnchange} checked={false}/>
+                            <DayAndNightMaterialUISwitch onChange={handleThemeOnchange}/>
 
                         </Menu>
                     </Box>

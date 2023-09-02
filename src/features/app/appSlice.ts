@@ -1,6 +1,10 @@
 import {createSlice} from '@reduxjs/toolkit'
 
-const initialState: object = {
+interface AppInitialStateType {
+  theme: string;
+}
+
+const initialState: AppInitialStateType = {
     theme: 'light',
 };
 
@@ -9,7 +13,7 @@ const appSlice = createSlice({
     initialState,
     reducers: {
         changeTheme(state, action) {
-            state = {...state, ...action.payload};
+            state.theme = action.payload.theme;
         }
     }
 });
