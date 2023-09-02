@@ -21,14 +21,9 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx",
-    "types": ["cypress", "@testing-library/cypress", "node"]
+    "jsx": "react-jsx"
   },
   "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    "cypress.config.mjs",
-    "cypress/support/component.mts",
-    "cypress/support/index.mts"
+    "src"
   ]
 }

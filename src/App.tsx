@@ -1,18 +1,19 @@
 import './App.css';
-import {store} from "./app/store";
 import {ThemeProvider} from "@mui/material";
-import light from "./themes/light";
 import {RouterProvider} from "react-router-dom";
 import {router} from "./navigation/route";
-import {Provider} from "react-redux";
+import {useSelector} from "react-redux";
+import Light from "./themes/light";
+import Dark from "./themes/dark";
+
 function App() {
-  return (
-      <Provider store={store}>
-        <ThemeProvider theme={light}>
-          <RouterProvider router={router()}/>
+    const themeType = useSelector<any>(state => state.app.theme);
+    console.log(themeType);
+    return (
+        <ThemeProvider theme={themeType === 'light' ? Light : Dark}>
+            <RouterProvider router={router()}/>
         </ThemeProvider>
-      </Provider>
-  );
+    );
 }
 
 export default App;
