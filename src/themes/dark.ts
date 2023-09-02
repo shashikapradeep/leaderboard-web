@@ -62,7 +62,7 @@ export default createTheme({
         divider: '#2D3A91',
         background: {
             default: '#0A0F28',
-            paper: '#0E1542',
+            // paper: '#0E1542',
         },
         text: {
             primary: '#ffffff',

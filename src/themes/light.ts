@@ -39,7 +39,7 @@ export default createTheme({
         toastMessage: '#000000',
         background: {
             default: '#EFF2FF',
-            paper: '#0E1542',
+            // paper: '#5064F6FF',
         },
         outline: {
             main: 'black',
