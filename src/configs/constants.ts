@@ -9,3 +9,10 @@ export const UNKNOWN_ERROR_MESSAGE = 'Unknown Error Occurred';
 //theme
 export const LIGHT_THEME = 'light';
 export const DARK_THEME = 'dark';
+
+//leaderboard
+export const MIN_POINTS = 0;
+export const MAX_POINTS = 2000;
+export const MIN_AGE = 10;
+export const MAX_AGE = 120;
+

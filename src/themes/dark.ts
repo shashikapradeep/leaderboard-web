@@ -133,31 +133,16 @@ export default createTheme({
         },
     },
     components: {
-        MuiInputBase: {
-            styleOverrides: {
-                root: {
-                    fontWeight: 700,
-                },
+        MuiTextField:{
+            defaultProps:{
+                variant: "outlined",
+                color: "primary",
             },
         },
-        MuiButtonBase: {
-            styleOverrides: {
-                root: {
-                    fontWeight: 700,
-                },
-            },
-        },
-        MuiFormControl: {
-            defaultProps: {
-                fullWidth: true,
-                size: 'small',
-            },
-        },
-        MuiOutlinedInput: {
-            styleOverrides: {
-                notchedOutline: ({ theme }) => ({
-                    borderColor: theme.palette.outline.main,
-                }),
+        MuiButton:{
+            defaultProps:{
+                variant: "contained",
+                color: "primary"
             },
         },
         MuiPaper: {

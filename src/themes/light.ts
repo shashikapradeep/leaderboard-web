@@ -102,10 +102,23 @@ export default createTheme({
         },
     },
     components: {
-        MuiFormControl: {
-            defaultProps: {
-                fullWidth: true,
-                size: 'small',
+        MuiTextField:{
+            defaultProps:{
+                variant: "outlined",
+                color: "primary",
+            },
+        },
+        MuiButton:{
+            defaultProps:{
+                variant: "contained",
+                color: "primary"
+            },
+        },
+        MuiPaper: {
+            styleOverrides: {
+                root: ({ theme }) => ({
+                    background: theme.palette.background.paper,
+                }),
             },
         },
     },

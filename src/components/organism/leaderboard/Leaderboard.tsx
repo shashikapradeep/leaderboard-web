@@ -9,7 +9,7 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import {LeaderDBType} from '../../../types/main';
 
-export default function () {
+const Leaderboard =  () => {
 
     //const dispatch = useAppDispatch();
     const leaderboardList = useSelector((state: RootState) => state.leaderboard.leadersList);
@@ -144,3 +144,5 @@ export default function () {
     };
     return (<LeaderboardRender/>);
 };
+
+export default Leaderboard;
