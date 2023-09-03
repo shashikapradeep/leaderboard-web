@@ -2,24 +2,19 @@ import {Box, Button, Grid, Paper, TextField} from "@mui/material";
 import {Formik, Form, FormikHelpers, ErrorMessage} from 'formik';
 import AddLeaderValidations from './AddLeaderFormValidation';
 
-interface LeadersDataType {
+export interface LeadersDataType {
     name: string,
     age: number,
     points: number,
     address: string,
 }
-const AddLeaderForm = () => {
-    const initialValue: LeadersDataType = {
+
+const AddLeaderForm = ({onSubmitHandler, initialValues}: any) => {
+    const initialValue: LeadersDataType = initialValues ?? {
         name: '',
         points: 0,
-        age: 10,
+        age: 0,
         address: ''
-    };
-
-    const handleSubmit = (values: LeadersDataType, props:FormikHelpers<LeadersDataType>) => {
-        console.log(values);
-        alert(JSON.stringify(values));
-        props.resetForm()
     };
 
     return (
@@ -30,11 +25,11 @@ const AddLeaderForm = () => {
                         <Formik
                             initialValues={initialValue}
                             validationSchema={AddLeaderValidations}
-                            onSubmit={handleSubmit}
+                            onSubmit={onSubmitHandler}
                         >
                             {(props) => {
                                 console.log("Props", props);
-                                const {name, points, age, address}:LeadersDataType = props.values;
+                                const {name, points, age, address}: LeadersDataType = props.values;
                                 return (
                                     <Form>
                                         <TextField
@@ -85,7 +80,8 @@ const AddLeaderForm = () => {
                                             error={Boolean(props.errors.address && props.touched.address)}
                                             required
                                         />
-                                        <Button type="submit" fullWidth disabled={props.isSubmitting}> Add Leader </Button>
+                                        <Button type="submit" fullWidth disabled={props.isSubmitting}> Add
+                                            Leader </Button>
                                     </Form>
                                 );
                             }}
