@@ -1,25 +1,33 @@
 import {createSlice} from '@reduxjs/toolkit'
+import {LeaderDBType} from '../../types/main';
+interface LeaderboardType{
+    isLoading: boolean;
+    leadersList: LeaderDBType[];
+}
 
-const initialState: object[] = [];
+const initialState: LeaderboardType = {
+    isLoading: false,
+    leadersList: []
+};
 
 const leaderboardSlice = createSlice({
     name: 'leaderboard',
     initialState,
     reducers: {
         addLeader(state, action) {
-            state.push(action.payload);
+            state.leadersList.push(action.payload);
         },
 
         removeLeader(state, action) {
-            state.push(action.payload);
+            state.leadersList.push(action.payload);
         },
 
         increasePoint(state, action) {
-            state.push(action.payload);
+            state.leadersList.push(action.payload);
         },
 
         decreasePoint(state, action) {
-            state.push(action.payload);
+            state.leadersList.push(action.payload);
         }
     }
 });
