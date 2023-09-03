@@ -18,7 +18,7 @@ class Axios {
 
     private setupInstance() {
         Axios.instance = axios.create({
-            baseURL: '/api/',
+            baseURL: 'http://localhost:8000/api/v1',
             timeout: this.defaultTimeout,
             headers: this.defaultHeaders,
         });
