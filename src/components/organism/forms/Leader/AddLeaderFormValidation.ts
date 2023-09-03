@@ -19,7 +19,7 @@ const AddLeaderFormValidation = yup.object().shape({
         .max(MAX_AGE, "Age can not be higher than " + MAX_AGE)
         .required(),
 
-    addresses: yup
+    address: yup
         .string()
         .min(3, "Address is too Short")
         .max(300, 'Address is too long' )

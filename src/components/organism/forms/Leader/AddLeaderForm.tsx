@@ -1,6 +1,5 @@
-import {FormControl, FormHelperText, Input, InputLabel} from '@mui/material';
-import {Box, Button, Grid, Paper, TextField, Typography} from "@mui/material";
-import {Formik, Field, Form, FormikHelpers, ErrorMessage} from 'formik';
+import {Box, Button, Grid, Paper, TextField} from "@mui/material";
+import {Formik, Form, FormikHelpers, ErrorMessage} from 'formik';
 import AddLeaderValidations from './AddLeaderFormValidation';
 
 interface LeadersDataType {
@@ -34,6 +33,7 @@ const AddLeaderForm = () => {
                             onSubmit={handleSubmit}
                         >
                             {(props) => {
+                                console.log("Props", props);
                                 const {name, points, age, address}:LeadersDataType = props.values;
                                 return (
                                     <Form>
@@ -85,7 +85,7 @@ const AddLeaderForm = () => {
                                             error={Boolean(props.errors.address && props.touched.address)}
                                             required
                                         />
-                                        <Button type="submit" fullWidth> Add Leader </Button>
+                                        <Button type="submit" fullWidth disabled={props.isSubmitting}> Add Leader </Button>
                                     </Form>
                                 );
                             }}
