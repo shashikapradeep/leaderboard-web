@@ -2,7 +2,7 @@ import {Box, Button, Grid, Paper, TextField} from "@mui/material";
 import {Formik, Form, FormikHelpers, ErrorMessage} from 'formik';
 import AddLeaderValidations from './AddLeaderFormValidation';
 
-export interface LeadersDataType {
+export interface LeaderDataType {
     name: string,
     age: number,
     points: number,
@@ -10,7 +10,7 @@ export interface LeadersDataType {
 }
 
 const AddLeaderForm = ({onSubmitHandler, initialValues}: any) => {
-    const initialValue: LeadersDataType = initialValues ?? {
+    const initialValue: LeaderDataType = initialValues ?? {
         name: '',
         points: 0,
         age: 0,
@@ -29,7 +29,7 @@ const AddLeaderForm = ({onSubmitHandler, initialValues}: any) => {
                         >
                             {(props) => {
                                 console.log("Props", props);
-                                const {name, points, age, address}: LeadersDataType = props.values;
+                                const {name, points, age, address}: LeaderDataType = props.values;
                                 return (
                                     <Form>
                                         <TextField

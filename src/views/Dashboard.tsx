@@ -1,5 +1,5 @@
 import {useEffect} from "react";
-import {getOne, getAll} from '../services/leaderboard/leaderboardApi';
+import {getOne, getAll, store} from '../services/leaderboard/leaderboardApi';
 import {useDispatch, useSelector} from 'react-redux';
 import {setAllLeaders, setLoader, setViewLeader} from '../features/leaderboard/leaderboardSlice';
 import {RootState} from '../state/store';
@@ -7,6 +7,8 @@ import SpinnerLoader from "../components/atomic/Loader/SpinnerLoader";
 import LeaderboardTemplate from "../components/template/LeaderboardTemplate";
 import {LeaderDBType} from "../types/main";
 import {useAppDispatch, useAppSelector} from "../state/hook";
+import {LeaderDataType} from "../components/organism/forms/Leader/AddLeaderForm";
+import {FormikHelpers} from "formik";
 
 const Dashboard = () => {
 
@@ -40,6 +42,18 @@ const Dashboard = () => {
         );
     }
 
+    const createLeader = (leaderData: LeaderDataType) => {
+        dispatch(setLoader(true));
+        store(leaderData).then(leaders => {
+            dispatch(setAllLeaders({allLeaders: leaders, isLoading: false}));
+            dispatch(setLoader(false));
+            fetchLeaders();
+        }).catch((error) => {
+                dispatch(setLoader(false));
+            }
+        );
+    }
+
     const handleAction = (id: number, context: string) => {
         console.log(id, context);
         switch (context) {
@@ -56,12 +70,17 @@ const Dashboard = () => {
         }
     };
 
+    const handleCreateLeader = (values: LeaderDataType, props:FormikHelpers<LeaderDataType>) => {
+        createLeader(values);
+        props.resetForm();
+    };
+
     console.log("use selector in Dashboard => ", isLoading, allLeaders, allLeaders.length);
 
     return <>
         {isLoading && <SpinnerLoader/>}
         <h1>Dashboard: # of All Leaders: {allLeaders.length}</h1>
-        <LeaderboardTemplate allLeaders={allLeaders} handleAction={handleAction} isLoading={isLoading}/>
+        <LeaderboardTemplate allLeaders={allLeaders} handleAction={handleAction} isLoading={isLoading} handleCreateLeader={handleCreateLeader}/>
     </>;
 };
 

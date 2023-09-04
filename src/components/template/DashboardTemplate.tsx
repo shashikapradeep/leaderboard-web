@@ -1,7 +1,6 @@
 import CustomButton from "../atomic/CustomButton/CustomButton";
 import SpinnerLoader from "../atomic/Loader/SpinnerLoader";
 import {Counter} from "../../features/counter/Counter";
-import AddLeaderTemplate from "./AddLeaderTemplate";
 
 const DashboardTemplate = () => {
     return <div>
@@ -9,7 +8,6 @@ const DashboardTemplate = () => {
         <CustomButton label={"Hello"}/>
         <SpinnerLoader/>
         <Counter/>
-        <AddLeaderTemplate/>
     </div>;
 };
 

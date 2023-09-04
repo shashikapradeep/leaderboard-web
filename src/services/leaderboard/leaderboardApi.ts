@@ -1,4 +1,4 @@
-import {LeadersDataType} from "../../components/organism/forms/Leader/AddLeaderForm";
+import {LeaderDataType} from "../../components/organism/forms/Leader/AddLeaderForm";
 import Axios from "../../provider/axios/axios";
 import {ResponseData} from "../../util/helper/response";
 
@@ -36,7 +36,7 @@ export function getAll(sortBy: string = 'id', orderBy: string = 'asc') {
     });
 }
 
-export function store(leaderData: LeadersDataType) {
+export function store(leaderData: LeaderDataType) {
     return new Promise((resolve, reject) => {
         axios.post('/leader/store', leaderData)
             .then((res) => {
@@ -52,7 +52,7 @@ export function store(leaderData: LeadersDataType) {
     });
 }
 
-export function update(leaderData: LeadersDataType, id: number) {
+export function update(leaderData: LeaderDataType, id: number) {
     return new Promise((resolve, reject) => {
         axios.post(`/leader/${id}`, leaderData)
             .then((res) => {
