@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import {LeaderDBType} from "../../../types/main";
-import Button from "../../atomic/CustomButtom/CustomButton";
+import Button from "../../atomic/CustomButton/CustomButton";
 
 interface DataTableType extends LeaderDBType {
     i?: number

@@ -1,4 +1,4 @@
-import CustomButton from "../atomic/CustomButtom/CustomButton";
+import CustomButton from "../atomic/CustomButton/CustomButton";
 import SpinnerLoader from "../atomic/Loader/SpinnerLoader";
 import {Counter} from "../../features/counter/Counter";
 import AddLeaderTemplate from "./AddLeaderTemplate";
