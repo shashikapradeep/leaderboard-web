@@ -24,7 +24,7 @@ const leaderboardSlice = createSlice({
     initialState,
     reducers: {
         setLoader(state, action) {
-            state.isLoading = action.payload.isLoading;
+            state.isLoading = action.payload;
         },
 
         setAllLeaders(state, action) {

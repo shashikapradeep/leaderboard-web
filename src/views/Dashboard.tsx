@@ -15,26 +15,51 @@ const Dashboard = () => {
     const allLeaders = useAppSelector(state => state.leaderboard.allLeaders);
 
     useEffect(() => {
-        dispatch(setLoader(true));
-        getAll().then(leaders => {
-            console.log("All Leaders in View useEffect => ", leaders);
-            dispatch(setAllLeaders({allLeaders: leaders, isLoading: false}));
-        });
+        fetchLeaders();
     }, []);
 
     const viewLeader = (id: number) => {
         dispatch(setLoader(true));
         getOne(id).then(leader => {
             dispatch(setViewLeader({viewLeader: leader, isLoading: false}));
-        });
+            dispatch(setLoader(false));
+        }).catch((error) => {
+                dispatch(setLoader(false));
+            }
+        );
     }
+
+    const fetchLeaders = () => {
+        dispatch(setLoader(true));
+        getAll().then(leaders => {
+            dispatch(setAllLeaders({allLeaders: leaders, isLoading: false}));
+            dispatch(setLoader(false));
+        }).catch((error) => {
+                dispatch(setLoader(false));
+            }
+        );
+    }
+
+    const handleAction = (id: number, context: string) => {
+        console.log(id, context);
+        switch (context) {
+            case 'delete_leader':
+                console.log("inside delete leader");
+                dispatch(setLoader(true));
+                break;
+            case 'increase_score':
+                break;
+            case 'decrease_score':
+                break;
+        }
+    };
 
     console.log("use selector in Dashboard => ", isLoading, allLeaders, allLeaders.length);
 
     return <>
         {isLoading && <SpinnerLoader/>}
         <h1>Dashboard: # of All Leaders: {allLeaders.length}</h1>
-        <LeaderboardTemplate allLeaders={allLeaders}/>
+        <LeaderboardTemplate allLeaders={allLeaders} handleAction={handleAction} isLoading={isLoading}/>
     </>;
 };
 

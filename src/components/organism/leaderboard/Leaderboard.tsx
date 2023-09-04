@@ -4,18 +4,23 @@ import {useEffect, useState} from "react";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import {LeaderDBType} from "../../../types/main";
-import Button from "@mui/material/Button";
+import Button from "../../atomic/CustomButtom/CustomButton";
+
+interface DataTableType extends LeaderDBType {
+    i?: number
+}
 
 // @ts-ignore
-const Leaderboard = ({allLeaders}) => {
+const Leaderboard = ({allLeaders, handleAction, isLoading}) => {
 
     const [tableDataSet, setTableDataSet] = useState<LeaderDBType[]>([]);
 
     useEffect(() => {
         console.log("Leaderboard Organisms => ", allLeaders);
-        let dataSet: LeaderDBType[] = [];
+        let dataSet: DataTableType[] = [];
         allLeaders?.forEach((leader: LeaderDBType, index: number) => {
             dataSet.push({
+                i: ++index,
                 id: leader.id,
                 name: leader.name,
                 age: leader.age,
@@ -36,18 +41,26 @@ const Leaderboard = ({allLeaders}) => {
         const columns = React.useMemo(
             () => [
                 {
-                    name: "id",
-                    label: "Action",
+                    name: "i",
+                    label: "#",
                     options: {
+                        filter: false,
+                        sort: false,
+                    }
+                },
+                {
+                    name: "id",
+                    label: 'Action',
+                    options: {
+                        filter: false,
+                        sort: false,
                         customBodyRender: (id: number) => {
                             return <Stack>
                                 {
-                                    <Button
-                                        onClick={(event) => {
-                                            deleteLeader(id);
-                                        }}
-                                    >
-                                    </Button>
+                                    <Button disabled={isLoading} label={'x'} onClick={(event) => {
+                                        handleAction(id, 'delete_leader');
+                                    }}
+                                    />
                                 }
                             </Stack>;
                         }
@@ -71,15 +84,39 @@ const Leaderboard = ({allLeaders}) => {
                             </Stack>;
                         }
                     }
-                }
+                },
+                {
+                    name: "id",
+                    label: "Action",
+                    options: {
+                        filter: false,
+                        sort: false,
+                        customBodyRender: (id: number) => {
+                            return <Stack>
+                                {
+                                    <>
+                                        <Button disabled={isLoading} label={'+'} onClick={(event) => {
+                                            handleAction(id, 'increase_leader_score');
+                                        }}
+                                        />
+                                        <Button disabled={isLoading} label={'-'} onClick={(event) => {
+                                            handleAction(id, 'decrease_leader_score');
+                                        }}
+                                        />
+                                    </>
+                                }
+                            </Stack>;
+                        }
+                    }
+                },
             ],
             [],
         );
 
         const tableOptions = {
             selectableRowsHideCheckboxes: true,
-            // onRowClick: (rowData, rowMeta) => {
-            //     setSelectedClinic(clinicList[tableDataSet[rowMeta.dataIndex].id - 1]);
+            // onRowClick: (rowData: any, rowMeta: any) => {
+            //     console.log(rowData);
             // }
         };
 

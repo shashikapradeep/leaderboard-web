@@ -13,12 +13,12 @@ const StackItem = styled(Paper)(({theme}) => ({
 }));
 
 // @ts-ignore
-export default function LeaderboardTemplate({allLeaders}) {
+export default function LeaderboardTemplate({allLeaders, handleAction, isLoading}) {
     console.log("All Leaders in Template => ", allLeaders);
     return (
         <Stack>
             <StackItem>
-                <Leaderboard allLeaders={allLeaders}/>
+                <Leaderboard allLeaders={allLeaders} handleAction={handleAction} isLoading={isLoading}/>
             </StackItem>
         </Stack>
     );
