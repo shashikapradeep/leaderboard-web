@@ -68,6 +68,22 @@ export function update(leaderData: LeaderDataType, id: number) {
     });
 }
 
+export function updateScore(id: number, context:string) {
+    return new Promise((resolve, reject) => {
+        axios.get(`/leader/update_score/${id}/${context}`)
+            .then((res) => {
+                resolve(ResponseData(res));
+            })
+            .catch((err) => {
+                reject({
+                    loading: false,
+                    fetch: false,
+                    fetchError: 'Data Fetch failed',
+                });
+            });
+    });
+}
+
 export function remove(leaderId: number) {
     return new Promise((resolve, reject) => {
         axios.delete(`/leader/${leaderId}`)
