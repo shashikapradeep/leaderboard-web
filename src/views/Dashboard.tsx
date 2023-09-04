@@ -1,5 +1,5 @@
 import {useEffect} from "react";
-import {getOne, getAll, store} from '../services/leaderboard/leaderboardApi';
+import {getOne, getAll, store, remove} from '../services/leaderboard/leaderboardApi';
 import {useDispatch, useSelector} from 'react-redux';
 import {setAllLeaders, setLoader, setViewLeader} from '../features/leaderboard/leaderboardSlice';
 import {RootState} from '../state/store';
@@ -46,6 +46,16 @@ const Dashboard = () => {
         dispatch(setLoader(true));
         store(leaderData).then(leaders => {
             dispatch(setAllLeaders({allLeaders: leaders, isLoading: false}));
+            fetchLeaders();
+        }).catch((error) => {
+                dispatch(setLoader(false));
+            }
+        );
+    }
+
+    const deleteLeader = (id: number) => {
+        dispatch(setLoader(true));
+        remove(id).then(leaders => {
             dispatch(setLoader(false));
             fetchLeaders();
         }).catch((error) => {
@@ -58,8 +68,7 @@ const Dashboard = () => {
         console.log(id, context);
         switch (context) {
             case 'delete_leader':
-                console.log("inside delete leader");
-                fetchLeaders();
+                deleteLeader(id);
                 break;
             case 'increase_leader_score':
                 fetchLeaders();
