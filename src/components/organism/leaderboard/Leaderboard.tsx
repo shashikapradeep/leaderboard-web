@@ -5,15 +5,24 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import {LeaderDBType} from "../../../types/main";
 import Button from "../../atomic/CustomButton/CustomButton";
+import {Grid, Modal} from "@mui/material";
+import Box from "@mui/material/Box";
+import AddLeaderForm from "../forms/Leader/AddLeaderForm";
+import CustomModal from "../../atomic/Modal/CustomModal";
+import Container from "@mui/material/Container";
 
-interface DataTableType extends LeaderDBType {
-    i?: number
+interface DataTableType extends Omit<LeaderDBType, 'name'> {
+    i?: number,
+    leader: LeaderDBType
 }
 
 // @ts-ignore
 const Leaderboard = ({allLeaders, handleAction}) => {
 
-    const [tableDataSet, setTableDataSet] = useState<LeaderDBType[]>([]);
+    const [viewLeader, setViewLeader] = useState<LeaderDBType>();
+
+    const [tableDataSet, setTableDataSet] = useState<DataTableType[]>([]);
+    const [openLeaderViewModal, setOpenLeaderViewModal] = useState<boolean>(false);
 
     useEffect(() => {
         console.log("Leaderboard Organisms => ", allLeaders);
@@ -22,7 +31,7 @@ const Leaderboard = ({allLeaders, handleAction}) => {
             dataSet.push({
                 i: ++index,
                 id: leader.id,
-                name: leader.name,
+                leader: leader,
                 age: leader.age,
                 points: leader.points,
                 address: leader.address,
@@ -33,8 +42,31 @@ const Leaderboard = ({allLeaders, handleAction}) => {
         setTableDataSet(dataSet);
     }, [allLeaders]);
 
-    const deleteLeader = (id: number) => {
-        console.log("Delete Leader ID => ", id);
+    const viewLeaderHandler = (leader:LeaderDBType) => {
+        setViewLeader(leader);
+        setOpenLeaderViewModal(true);
+    }
+
+    const LeaderViewModal = () => {
+        return <CustomModal
+            open={openLeaderViewModal}
+            onClose={()=>setOpenLeaderViewModal(false)}
+        >
+            <Container>
+                <Stack>
+                    Name: {viewLeader?.name}
+                </Stack>
+                <Stack>
+                    Age: {viewLeader?.age}
+                </Stack>
+                <Stack>
+                    Points: {viewLeader?.points}
+                </Stack>
+                <Stack>
+                    Address: {viewLeader?.address}
+                </Stack>
+            </Container>
+        </CustomModal>
     };
 
     const LeaderboardRender = () => {
@@ -67,11 +99,16 @@ const Leaderboard = ({allLeaders, handleAction}) => {
                     }
                 },
                 {
-                    name: "name",
+                    name: "leader",
                     label: "Name",
                     options: {
                         filter: true,
                         sort: true,
+                        customBodyRender: (leader: LeaderDBType) => {
+                            return <Stack onClick={() => viewLeaderHandler(leader)}>
+                                <Typography>{leader.name}</Typography>
+                            </Stack>;
+                        }
                     }
                 },
                 {
@@ -131,6 +168,7 @@ const Leaderboard = ({allLeaders, handleAction}) => {
         )
     };
     return <>
+        <LeaderViewModal/>
         <LeaderboardRender/>
     </>;
 };

@@ -30,7 +30,7 @@ const style = {
 };
 
 // @ts-ignore
-export default function LeaderboardTemplate({allLeaders, handleAction, handleCreateLeader, isLoading, openCreateUserModal=false}) {
+export default function LeaderboardTemplate({allLeaders, handleAction, handleCreateLeader, openCreateUserModal=false}) {
 
     const [open, setOpen] = useState<boolean>(openCreateUserModal);
 

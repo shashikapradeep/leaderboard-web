@@ -99,7 +99,7 @@ const Leaderboard = () => {
     return <>
         {isLoading && <SpinnerLoader/>}
         <h1>Dashboard: # of All Leaders: {allLeaders.length}</h1>
-        <LeaderboardTemplate allLeaders={allLeaders} handleAction={handleAction} isLoading={isLoading}
+        <LeaderboardTemplate allLeaders={allLeaders} handleAction={handleAction}
                              handleCreateLeader={handleCreateLeader} openCreateUserModal={openCreateModal}/>
     </>;
 };
