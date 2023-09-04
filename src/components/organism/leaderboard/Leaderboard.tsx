@@ -1,31 +1,18 @@
 import * as React from 'react';
 import MUIDataTable from 'mui-datatables';
-//import {useAppDispatch} from '../../../state/hook';
-import {useSelector} from "react-redux";
-import {RootState} from "../../../state/store";
-//import {useNavigate} from 'react-router-dom';
 import {useEffect, useState} from "react";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
-import {LeaderDBType} from '../../../types/main';
+import {LeaderDBType} from "../../../types/main";
 
-const Leaderboard =  () => {
-
-    //const dispatch = useAppDispatch();
-    const leaderboardList = useSelector((state: RootState) => state.leaderboard.leadersList);
-    //const navigate = useNavigate();
+// @ts-ignore
+const Leaderboard =  ({allLeaders}) => {
 
     const [tableDataSet, setTableDataSet] = useState<LeaderDBType[]>([]);
 
     useEffect(() => {
-        // dispatch(resetClinicForm('all'));
-        // dispatch(setIsLoading(true));
-        // dispatch(fetchClinicList());
-    }, []);
-
-    useEffect(() => {
         let dataSet: LeaderDBType[] = [];
-        leaderboardList?.forEach((leader: LeaderDBType, index: number) => {
+        allLeaders?.forEach((leader: LeaderDBType, index: number) => {
             dataSet.push({
                 id: ++index,
                 name: leader.name,
@@ -37,7 +24,7 @@ const Leaderboard =  () => {
             });
         });
         setTableDataSet(dataSet);
-    }, [leaderboardList]);
+    }, [allLeaders]);
 
     const LeaderboardRender = () => {
         const columns = React.useMemo(

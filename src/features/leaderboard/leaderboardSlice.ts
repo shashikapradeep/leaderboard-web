@@ -1,36 +1,61 @@
 import {createSlice} from '@reduxjs/toolkit'
-import {LeaderDBType} from '../../types/main';
-interface LeaderboardType{
+import {LeaderDBType, LeaderType} from '../../types/main';
+
+interface LeaderboardSliceType {
     isLoading: boolean;
-    leadersList: LeaderDBType[];
+    allLeaders: LeaderDBType[];
+    createLeader: LeaderType | null,
+    viewLeader: LeaderDBType | null,
+    deletedLeader: LeaderDBType | number | null,
+    error: object | null
 }
 
-const initialState: LeaderboardType = {
+const initialState: LeaderboardSliceType = {
     isLoading: false,
-    leadersList: []
+    allLeaders: [],
+    createLeader: null,
+    viewLeader: null,
+    deletedLeader: null,
+    error: null
 };
 
 const leaderboardSlice = createSlice({
     name: 'leaderboard',
     initialState,
     reducers: {
-        addLeader(state, action) {
-            state.leadersList.push(action.payload);
+        setLoader(state, action) {
+            state.isLoading = action.payload;
         },
 
-        removeLeader(state, action) {
-            state.leadersList.push(action.payload);
+        setAllLeaders(state, action) {
+            state = {...state, ...action.payload};
         },
 
-        increasePoint(state, action) {
-            state.leadersList.push(action.payload);
+        setCreateLeader(state, action) {
+            state.createLeader = action.payload;
         },
 
-        decreasePoint(state, action) {
-            state.leadersList.push(action.payload);
+        setViewLeader(state, action) {
+            state = {...state, ...action.payload};
+        },
+
+        setDeletedLeader(state, action) {
+            state = {...state, ...action.payload};
+        },
+
+        setError(state, action) {
+            state = {...state, ...action.payload};
         }
     }
 });
 
-export const {addLeader,removeLeader, decreasePoint, increasePoint} = leaderboardSlice.actions
+export const {
+    setLoader,
+    setAllLeaders,
+    setCreateLeader,
+    setViewLeader,
+    setDeletedLeader,
+    setError
+} = leaderboardSlice.actions
+
 export default leaderboardSlice.reducer;
