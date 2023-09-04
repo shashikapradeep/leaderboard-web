@@ -1,12 +1,14 @@
 import {createBrowserRouter, createRoutesFromElements, Route} from "react-router-dom";
-import DashboardTemplate from "../components/template/DashboardTemplate";
-import LeaderboardTemplate from "../components/template/LeaderboardTemplate";
+import Dashboard from "../views/Dashboard";
+import AddLeader from "../views/AddLeader";
+import Leaderboard from "../views/Leaderboard";
 import {Layout} from "../components/organism/layout/Layout";
 
 export const router = () => createBrowserRouter(createRoutesFromElements(
     <Route path={'/'} element={<Layout/>}>
-        <Route index element={<DashboardTemplate/>}></Route>
-        <Route path={'/leaderboard'} element={<LeaderboardTemplate/>}></Route>
+        <Route index element={<Dashboard/>}></Route>
+        <Route path={'/leaderboard'} element={<Leaderboard/>}></Route>
+        <Route path={'/leaderboard/add'} element={<AddLeader/>}></Route>
     </Route>
 ));
 
