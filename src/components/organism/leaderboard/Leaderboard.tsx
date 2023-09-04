@@ -4,17 +4,19 @@ import {useEffect, useState} from "react";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import {LeaderDBType} from "../../../types/main";
+import Button from "@mui/material/Button";
 
 // @ts-ignore
-const Leaderboard =  ({allLeaders}) => {
+const Leaderboard = ({allLeaders}) => {
 
     const [tableDataSet, setTableDataSet] = useState<LeaderDBType[]>([]);
 
     useEffect(() => {
+        console.log("Leaderboard Organisms => ", allLeaders);
         let dataSet: LeaderDBType[] = [];
         allLeaders?.forEach((leader: LeaderDBType, index: number) => {
             dataSet.push({
-                id: ++index,
+                id: leader.id,
                 name: leader.name,
                 age: leader.age,
                 points: leader.points,
@@ -26,86 +28,48 @@ const Leaderboard =  ({allLeaders}) => {
         setTableDataSet(dataSet);
     }, [allLeaders]);
 
+    const deleteLeader = (id: number) => {
+        console.log("Delete Leader ID => ", id);
+    };
+
     const LeaderboardRender = () => {
         const columns = React.useMemo(
             () => [
                 {
-                    name: "rowId",
-                    label: "#",
+                    name: "id",
+                    label: "Action",
                     options: {
-                        filter: false,
-                        sort: false,
-                        options: {
-                            customBodyRender: (rowId: number) => {
-                                return <Stack>
-                                    <Typography>`${rowId}. `</Typography>
-                                </Stack>;
-                            }
+                        customBodyRender: (id: number) => {
+                            return <Stack>
+                                {
+                                    <Button
+                                        onClick={(event) => {
+                                            deleteLeader(id);
+                                        }}
+                                    >
+                                    </Button>
+                                }
+                            </Stack>;
                         }
                     }
                 },
                 {
                     name: "name",
-                    label: "Clinic",
+                    label: "Name",
                     options: {
                         filter: true,
                         sort: true,
                     }
                 },
                 {
-                    name: "start_at",
-                    label: "Start",
+                    name: "points",
+                    label: "Points",
                     options: {
-                        customBodyRender: (start_at: string) => {
+                        customBodyRender: (points: string) => {
                             return <Stack>
-                                <Typography>{start_at}</Typography>
+                                <Typography>{points}</Typography>
                             </Stack>;
                         }
-                    }
-                },
-                {
-                    name: "end_at",
-                    label: "End",
-                    options: {
-                        filter: true,
-                        sort: true,
-                    }
-                },
-                {
-                    name: "per_person_time",
-                    label: "P.P. (min)",
-                    options: {
-                        filter: true,
-                        sort: true,
-                    }
-                },
-                {
-                    name: "appointments",
-                    label: "Appointments",
-                    options: {
-                        filter: true,
-                        sort: true,
-                        customBodyRender: (data: any) => {
-                            return <Stack>
-                                <Typography>{data.booked} / {data.total}</Typography>
-                            </Stack>;
-                        }
-                    }
-                },
-                {
-                    name: "provider",
-                    label: "Provider",
-                    options: {
-                        filter: true,
-                        sort: true,
-                    }
-                },
-                {
-                    name: "published_at",
-                    label: "Published",
-                    options: {
-                        filter: true,
-                        sort: true,
                     }
                 }
             ],
