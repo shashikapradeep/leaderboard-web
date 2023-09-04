@@ -5,16 +5,19 @@ import {setAllLeaders, setLoader, setViewLeader} from '../features/leaderboard/l
 import {RootState} from '../state/store';
 import SpinnerLoader from "../components/atomic/Loader/SpinnerLoader";
 import LeaderboardTemplate from "../components/template/LeaderboardTemplate";
+import {LeaderDBType} from "../types/main";
+import {useAppDispatch, useAppSelector} from "../state/hook";
 
 const Dashboard = () => {
 
-    const dispatch = useDispatch();
-    const isLoading = useSelector<RootState>(state => state.leaderboard.isLoading);
-    const allLeaders = useSelector<RootState>(state => state.leaderboard.allLeaders);
+    const dispatch = useAppDispatch();
+    const isLoading = useAppSelector(state => state.leaderboard.isLoading);
+    const allLeaders = useAppSelector(state => state.leaderboard.allLeaders);
 
     useEffect(() => {
         dispatch(setLoader(true));
         getAll().then(leaders => {
+            console.log("All Leaders in View useEffect => ", leaders);
             dispatch(setAllLeaders({allLeaders: leaders, isLoading: false}));
         });
     }, []);
@@ -26,9 +29,11 @@ const Dashboard = () => {
         });
     }
 
+    console.log("use selector in Dashboard => ", isLoading, allLeaders, allLeaders.length);
+
     return <>
         {isLoading && <SpinnerLoader/>}
-        <h1>Dashboard</h1>
+        <h1>Dashboard: # of All Leaders: {allLeaders.length}</h1>
         <LeaderboardTemplate allLeaders={allLeaders}/>
     </>;
 };

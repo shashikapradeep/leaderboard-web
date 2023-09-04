@@ -14,6 +14,7 @@ const StackItem = styled(Paper)(({theme}) => ({
 
 // @ts-ignore
 export default function LeaderboardTemplate({allLeaders}) {
+    console.log("All Leaders in Template => ", allLeaders);
     return (
         <Stack>
             <StackItem>

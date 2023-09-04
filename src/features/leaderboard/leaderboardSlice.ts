@@ -24,27 +24,27 @@ const leaderboardSlice = createSlice({
     initialState,
     reducers: {
         setLoader(state, action) {
-            state.isLoading = action.payload;
+            state.isLoading = action.payload.isLoading;
         },
 
         setAllLeaders(state, action) {
-            state = {...state, ...action.payload};
+            state.allLeaders = action.payload.allLeaders;
         },
 
         setCreateLeader(state, action) {
-            state.createLeader = action.payload;
+            state.createLeader = action.payload.createLeader;
         },
 
         setViewLeader(state, action) {
-            state = {...state, ...action.payload};
+            state.viewLeader = action.payload.viewLeader;
         },
 
         setDeletedLeader(state, action) {
-            state = {...state, ...action.payload};
+            state.deletedLeader = action.payload.deletedLeader;
         },
 
         setError(state, action) {
-            state = {...state, ...action.payload};
+            state.error = action.payload.error;
         }
     }
 });
