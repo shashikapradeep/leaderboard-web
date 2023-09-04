@@ -19,7 +19,7 @@ export default function LeaderboardTemplate({allLeaders, handleAction, isLoading
     return (
         <Stack>
             <StackItem>
-                <Leaderboard allLeaders={allLeaders} handleAction={handleAction} isLoading={isLoading}/>
+                <Leaderboard allLeaders={allLeaders} handleAction={handleAction}/>
             </StackItem>
             <StackItem>
                 <Button label="Add User"/>

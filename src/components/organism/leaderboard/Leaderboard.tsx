@@ -11,7 +11,7 @@ interface DataTableType extends LeaderDBType {
 }
 
 // @ts-ignore
-const Leaderboard = ({allLeaders, handleAction, isLoading}) => {
+const Leaderboard = ({allLeaders, handleAction}) => {
 
     const [tableDataSet, setTableDataSet] = useState<LeaderDBType[]>([]);
 
@@ -57,7 +57,7 @@ const Leaderboard = ({allLeaders, handleAction, isLoading}) => {
                         customBodyRender: (id: number) => {
                             return <Stack>
                                 {
-                                    <Button disabled={isLoading} label={'x'} onClick={(event) => {
+                                    <Button label={'x'} onClick={(event) => {
                                         handleAction(id, 'delete_leader');
                                     }}
                                     />
@@ -95,11 +95,11 @@ const Leaderboard = ({allLeaders, handleAction, isLoading}) => {
                             return <Stack>
                                 {
                                     <>
-                                        <Button disabled={isLoading} label={'+'} onClick={(event) => {
+                                        <Button label={'+'} onClick={(event) => {
                                             handleAction(id, 'increase_leader_score');
                                         }}
                                         />
-                                        <Button disabled={isLoading} label={'-'} onClick={(event) => {
+                                        <Button label={'-'} onClick={(event) => {
                                             handleAction(id, 'decrease_leader_score');
                                         }}
                                         />
@@ -130,7 +130,9 @@ const Leaderboard = ({allLeaders, handleAction, isLoading}) => {
             />
         )
     };
-    return (<LeaderboardRender/>);
+    return <>
+        <LeaderboardRender/>
+    </>;
 };
 
 export default Leaderboard;

@@ -45,11 +45,13 @@ const Dashboard = () => {
         switch (context) {
             case 'delete_leader':
                 console.log("inside delete leader");
-                dispatch(setLoader(true));
+                fetchLeaders();
                 break;
-            case 'increase_score':
+            case 'increase_leader_score':
+                fetchLeaders();
                 break;
-            case 'decrease_score':
+            case 'decrease_leader_score':
+                fetchLeaders();
                 break;
         }
     };
