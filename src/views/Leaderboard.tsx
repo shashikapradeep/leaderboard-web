@@ -63,7 +63,7 @@ const Leaderboard = () => {
         );
     }
 
-    const updateLeaderScore = (id:number, context:string) => {
+    const updateLeaderScore = (id: number, context: string) => {
         dispatch(setLoader(true));
         updateScore(id, context).then(leaders => {
             dispatch(setLoader(false));
@@ -98,7 +98,7 @@ const Leaderboard = () => {
 
     return <>
         {isLoading && <SpinnerLoader/>}
-        <h1>Dashboard: # of All Leaders: {allLeaders.length}</h1>
+        <h1>Dashboard</h1>
         <LeaderboardTemplate allLeaders={allLeaders} handleAction={handleAction}
                              handleCreateLeader={handleCreateLeader} openCreateUserModal={openCreateModal}/>
     </>;
