@@ -4,7 +4,7 @@ import {setAllLeaders, setLoader, setViewLeader} from '../features/leaderboard/l
 import SpinnerLoader from "../components/atomic/Loader/SpinnerLoader";
 import LeaderboardTemplate from "../components/template/LeaderboardTemplate";
 import {useAppDispatch, useAppSelector} from "../state/hook";
-import {LeaderDataType} from "../components/organism/forms/Leader/AddLeaderForm";
+import {LeaderDataType} from "../types/leaderboardTypes";
 import {FormikHelpers} from "formik";
 
 const Leaderboard = () => {

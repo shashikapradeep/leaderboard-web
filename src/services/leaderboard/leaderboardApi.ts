@@ -1,4 +1,4 @@
-import {LeaderDataType} from "../../components/organism/forms/Leader/AddLeaderForm";
+import {LeaderDataType} from "../../types/leaderboardTypes";
 import Axios from "../../provider/axios/axios";
 import {ResponseData} from "../../util/helper/response";
 

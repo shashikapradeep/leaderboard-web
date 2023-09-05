@@ -1,6 +1,5 @@
 import { createTheme } from '@mui/material';
 
-// Add custom theme properties
 declare module '@mui/material/styles' {
     interface Palette {
         outline: Palette['primary'];

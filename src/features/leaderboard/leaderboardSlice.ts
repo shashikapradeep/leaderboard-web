@@ -1,10 +1,10 @@
 import {createSlice} from '@reduxjs/toolkit'
-import {LeaderDBType, LeaderType} from '../../types/main';
+import {LeaderDBType, LeaderDataType} from '../../types/leaderboardTypes';
 
 interface LeaderboardSliceType {
     isLoading: boolean;
     allLeaders: LeaderDBType[];
-    createLeader: LeaderType | null,
+    createLeader: LeaderDataType | null,
     viewLeader: LeaderDBType | null,
     deletedLeader: LeaderDBType | number | null,
     error: object | null

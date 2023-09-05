@@ -11,7 +11,7 @@ import {
 } from '../configs/constants';
 
 class ErrorMessage {
-    private error: AxiosError;
+    error: AxiosError;
 
     constructor(error: AxiosError) {
         this.error = error;
@@ -50,7 +50,7 @@ class ErrorMessage {
     public showMessage(message = ''): void {
         const errorMessage: string = message.length > 0 ? message : this.getErrorMessage().toString();
         if (errorMessage.length) {
-            // toast will replace once toast component is customized in JIRA task 86
+            alert(errorMessage);
         }
     }
 }

@@ -2,11 +2,12 @@ import Stack from '@mui/material/Stack';
 import Leaderboard, {LeaderBoardType} from '../organism/leaderboard/Leaderboard';
 import Button from '../../components/atomic/CustomButton/CustomButton';
 import {useState} from "react";
-import AddLeaderForm, {LeaderDataType} from "../organism/forms/Leader/AddLeaderForm";
+import AddLeaderForm from "../organism/forms/Leader/AddLeaderForm";
 import CustomModal from "../atomic/Modal/CustomModal";
 import Container from "@mui/material/Container";
 import * as React from "react";
 import {FormikHelpers} from "formik";
+import {LeaderDataType} from '../../types/leaderboardTypes';
 
 interface LeaderBoardTemplateType extends LeaderBoardType{
     handleCreateLeader: (values: LeaderDataType, props: FormikHelpers<LeaderDataType>) => void;

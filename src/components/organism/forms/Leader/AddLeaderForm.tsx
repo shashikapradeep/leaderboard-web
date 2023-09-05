@@ -2,13 +2,8 @@ import {Box, Button, Grid, Paper, TextField} from "@mui/material";
 import {Formik, Form, FormikHelpers, ErrorMessage} from 'formik';
 import AddLeaderValidations from './AddLeaderFormValidation';
 import Stack from '@mui/material/Stack';
+import {LeaderDataType} from "../../../../types/leaderboardTypes";
 
-export interface LeaderDataType {
-    name: string,
-    age: number,
-    points: number,
-    address: string,
-}
 
 export interface AddLeaderFormType {
     onSubmitHandler: (values: LeaderDataType, props: FormikHelpers<LeaderDataType>) => void;
