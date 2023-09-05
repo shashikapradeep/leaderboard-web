@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {getOne, getAll, store, remove, updateScore} from '../services/leaderboard/leaderboardApi';
-import {setAllLeaders, setLoader, setViewLeader} from '../features/leaderboard/leaderboardSlice';
+import {setAllLeaders, setLoader, setViewLeader, setErrorLeader} from '../features/leaderboard/leaderboardSlice';
 import SpinnerLoader from "../components/atomic/Loader/SpinnerLoader";
 import LeaderboardTemplate from "../components/template/LeaderboardTemplate";
 import {useAppDispatch, useAppSelector} from "../state/hook";
@@ -44,10 +44,12 @@ const Leaderboard = () => {
 
     const createLeader = (leaderData: LeaderDataType) => {
         dispatch(setLoader(true));
+        dispatch(setErrorLeader({error: {createLeader: null}}));
         store(leaderData).then(leaders => {
             dispatch(setLoader(false));
             fetchLeaders();
         }).catch((error) => {
+                dispatch(setErrorLeader({error: {createLeader: error}}));
                 dispatch(setLoader(false));
             }
         );
@@ -101,9 +103,9 @@ const Leaderboard = () => {
         <h1>Dashboard</h1>
         <Button onClick={() => createLeader({
             'name': "shashika",
-            'points': 5000,
+            'points': 50,
             'age': 20,
-            "address" : 'Canada'
+            "address": 'Canada'
         })}>Create Leader</Button>
         <LeaderboardTemplate allLeaders={allLeaders} handleAction={handleAction}
                              handleCreateLeader={handleCreateLeader} openCreateUserModal={openCreateModal}/>

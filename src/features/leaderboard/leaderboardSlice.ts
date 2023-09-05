@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit'
-import {LeaderDBType, LeaderDataType} from '../../types/leaderboardTypes';
+import {LeaderDBType, LeaderDataType, LeaderError} from '../../types/leaderboardTypes';
 
 interface LeaderboardSliceType {
     isLoading: boolean;
@@ -7,7 +7,7 @@ interface LeaderboardSliceType {
     createLeader: LeaderDataType | null,
     viewLeader: LeaderDBType | null,
     deletedLeader: LeaderDBType | number | null,
-    error: object | null
+    errorLeader: LeaderError | null
 }
 
 const initialState: LeaderboardSliceType = {
@@ -16,7 +16,7 @@ const initialState: LeaderboardSliceType = {
     createLeader: null,
     viewLeader: null,
     deletedLeader: null,
-    error: null
+    errorLeader: null
 };
 
 const leaderboardSlice = createSlice({
@@ -43,8 +43,8 @@ const leaderboardSlice = createSlice({
             state.deletedLeader = action.payload.deletedLeader;
         },
 
-        setError(state, action) {
-            state.error = action.payload.error;
+        setErrorLeader(state, action) {
+            state.errorLeader = action.payload.error;
         }
     }
 });
@@ -55,7 +55,7 @@ export const {
     setCreateLeader,
     setViewLeader,
     setDeletedLeader,
-    setError
+    setErrorLeader
 } = leaderboardSlice.actions
 
 export default leaderboardSlice.reducer;

@@ -11,11 +11,7 @@ export function getOne(leaderId: number) {
                 resolve(ResponseData(res));
             })
             .catch((err) => {
-                reject({
-                    loading: false,
-                    fetch: false,
-                    fetchError: 'Data Fetch failed',
-                });
+                reject(err.response);
             });
     });
 }
@@ -43,11 +39,7 @@ export function store(leaderData: LeaderDataType) {
                 resolve(ResponseData(res));
             })
             .catch((err) => {
-                reject({
-                    loading: false,
-                    fetch: false,
-                    fetchError: 'Data Fetch failed',
-                });
+                reject(err.data);
             });
     });
 }

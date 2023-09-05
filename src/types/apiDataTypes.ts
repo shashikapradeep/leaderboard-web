@@ -6,3 +6,12 @@ export interface responseType {
         status_code: number
     }
 }
+
+export interface errorResponseType {
+    status: string,
+    status_code: number,
+    message: string,
+    result: {
+        errors?: any
+    }
+}

@@ -40,7 +40,7 @@ class Axios {
             },
             (error: AxiosError) => {
                 new ErrorMessage(error).showMessage();
-                return Promise.reject(error);
+                return Promise.reject(error.response);
             },
         );
     }

@@ -2,7 +2,9 @@ import {Box, Button, Grid, Paper, TextField} from "@mui/material";
 import {Formik, Form, FormikHelpers, ErrorMessage} from 'formik';
 import AddLeaderValidations from './AddLeaderFormValidation';
 import Stack from '@mui/material/Stack';
-import {LeaderDataType} from "../../../../types/leaderboardTypes";
+import {LeaderDataType, LeaderError} from "../../../../types/leaderboardTypes";
+import {useAppSelector} from "../../../../state/hook";
+import DisplayFormErrors from "../../../organism/DisplayFormErrors";
 
 
 export interface AddLeaderFormType {
@@ -11,6 +13,9 @@ export interface AddLeaderFormType {
 }
 
 const AddLeaderForm = ({onSubmitHandler, initialValues}: AddLeaderFormType) => {
+
+    const errorLeader = useAppSelector<LeaderError | null>(state => state.leaderboard.errorLeader);
+
     const initialValue: LeaderDataType = initialValues ?? {
         name: '',
         points: 0,
@@ -22,6 +27,9 @@ const AddLeaderForm = ({onSubmitHandler, initialValues}: AddLeaderFormType) => {
         <Grid container>
             <Grid item xs={12}>
                 <h3>Add Leader</h3>
+                {
+                    (errorLeader?.createLeader) && <DisplayFormErrors errors={errorLeader?.createLeader}/>
+                }
                 <Formik
                     initialValues={initialValue}
                     validationSchema={AddLeaderValidations}
