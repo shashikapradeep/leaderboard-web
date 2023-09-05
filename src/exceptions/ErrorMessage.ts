@@ -9,7 +9,6 @@ import {
     UNKNOWN_ERROR_MESSAGE,
     VALIDATION_ERROR_CODES,
 } from '../configs/constants';
-import {responseType} from "../types/apiDataTypes";
 
 class ErrorMessage {
     error: AxiosError;

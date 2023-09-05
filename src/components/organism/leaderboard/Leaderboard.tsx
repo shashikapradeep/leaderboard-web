@@ -81,7 +81,7 @@ const Leaderboard = ({allLeaders, handleAction}: LeaderBoardType) => {
                             return <Stack direction="row" alignItems="center">
                                 {
                                     <Stack mr={3}>
-                                        <IconButton aria-label="increase a point" size="small" onClick={(event) => {
+                                        <IconButton aria-label="increase a point" size="small" onClick={() => {
                                             handleAction(id, 'delete_leader');
                                         }}>
                                             <DeleteIcon color={"error"}/>
@@ -127,14 +127,14 @@ const Leaderboard = ({allLeaders, handleAction}: LeaderBoardType) => {
                         customBodyRender: (leader: LeaderDBType) => {
                             return <Stack direction="row" alignItems="center">
                                 <Stack mr={3}>
-                                    <IconButton aria-label="increase a point" size="small" onClick={(event) => {
+                                    <IconButton aria-label="increase a point" size="small" onClick={() => {
                                         handleAction(leader.id, 'increase_leader_score');
                                     }}>
                                         <PlusIcon color="primary"/>
                                     </IconButton>
                                 </Stack>
                                 <Stack>
-                                    <IconButton aria-label="decerese a point" size="small" onClick={(event) => {
+                                    <IconButton aria-label="decerese a point" size="small" onClick={() => {
                                         handleAction(leader.id, 'decrease_leader_score');
                                     }}>
                                         <MinusIcon color="primary"/>

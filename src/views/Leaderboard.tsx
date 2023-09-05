@@ -6,7 +6,6 @@ import LeaderboardTemplate from "../components/template/LeaderboardTemplate";
 import {useAppDispatch, useAppSelector} from "../state/hook";
 import {LeaderDataType} from "../types/leaderboardTypes";
 import {FormikHelpers} from "formik";
-import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 
 const Leaderboard = () => {
@@ -54,7 +53,7 @@ const Leaderboard = () => {
     const createLeader = (leaderData: LeaderDataType) => {
         dispatch(setLoader(true));
         dispatch(setErrorLeader({error: null}));
-        store(leaderData).then(leaders => {
+        store(leaderData).then(() => {
             dispatch(setLoader(false));
             fetchLeaders();
         }).catch((error) => {
@@ -67,7 +66,7 @@ const Leaderboard = () => {
     const deleteLeader = (id: number) => {
         dispatch(setLoader(true));
         dispatch(setErrorLeader({error: null}));
-        remove(id).then(leaders => {
+        remove(id).then(() => {
             dispatch(setLoader(false));
             fetchLeaders();
         }).catch((error) => {
@@ -80,7 +79,7 @@ const Leaderboard = () => {
     const updateLeaderScore = (id: number, context: string) => {
         dispatch(setLoader(true));
         dispatch(setErrorLeader({error: null}));
-        updateScore(id, context).then(leaders => {
+        updateScore(id, context).then(() => {
             dispatch(setLoader(false));
             fetchLeaders();
         }).catch((error) => {

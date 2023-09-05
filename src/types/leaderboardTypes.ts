@@ -1,4 +1,4 @@
-import {errorResponseType, responseType} from "./apiDataTypes";
+import {errorResponseType} from "./apiDataTypes";
 
 export interface LeaderDataType {
     name: string,

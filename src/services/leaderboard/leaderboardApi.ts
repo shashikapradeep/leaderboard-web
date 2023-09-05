@@ -10,8 +10,8 @@ export function getOne(leaderId: number) {
             .then((res) => {
                 resolve(ResponseData(res));
             })
-            .catch((err) => {
-                reject(err.response);
+            .catch((err:any) => {
+                reject(err.data);
             });
     });
 }
@@ -22,12 +22,8 @@ export function getAll(sortBy: string = 'id', orderBy: string = 'asc') {
             .then((res) => {
                 resolve(ResponseData(res));
             })
-            .catch((err) => {
-                reject({
-                    loading: false,
-                    fetch: false,
-                    fetchError: 'Data Fetch failed',
-                });
+            .catch((err:any) => {
+                reject(err.data);
             });
     });
 }
@@ -38,7 +34,7 @@ export function store(leaderData: LeaderDataType) {
             .then((res) => {
                 resolve(ResponseData(res));
             })
-            .catch((err) => {
+            .catch((err:any) => {
                 reject(err.data);
             });
     });
@@ -50,12 +46,8 @@ export function update(leaderData: LeaderDataType, id: number) {
             .then((res) => {
                 resolve(ResponseData(res));
             })
-            .catch((err) => {
-                reject({
-                    loading: false,
-                    fetch: false,
-                    fetchError: 'Data Fetch failed',
-                });
+            .catch((err:any) => {
+                reject(err.data);
             });
     });
 }
@@ -66,12 +58,8 @@ export function updateScore(id: number, context:string) {
             .then((res) => {
                 resolve(ResponseData(res));
             })
-            .catch((err) => {
-                reject({
-                    loading: false,
-                    fetch: false,
-                    fetchError: 'Data Fetch failed',
-                });
+            .catch((err:any) => {
+                reject(err.data);
             });
     });
 }
@@ -82,12 +70,8 @@ export function remove(leaderId: number) {
             .then((res) => {
                 resolve(ResponseData(res));
             })
-            .catch((err) => {
-                reject({
-                    loading: false,
-                    fetch: false,
-                    fetchError: 'Data Fetch failed',
-                });
+            .catch((err:any) => {
+                reject(err.data);
             });
     });
 }

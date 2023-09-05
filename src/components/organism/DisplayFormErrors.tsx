@@ -1,6 +1,5 @@
 import {errorResponseType} from "../../types/apiDataTypes";
 import Typography from "@mui/material/Typography";
-import {useEffect, useState} from "react";
 
 type ErrorPropTypes = {
     errors: errorResponseType

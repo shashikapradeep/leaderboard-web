@@ -1,8 +1,6 @@
 import {Modal, Paper, ModalProps} from "@mui/material";
-import { useTheme } from '@mui/material/styles';
 
 const CustomModal = ({open, onClose, children, ...arg}: ModalProps) => {
-    const theme = useTheme();
 
     const style = {
         position: 'absolute' as 'absolute',

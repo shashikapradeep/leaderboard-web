@@ -10,8 +10,6 @@ import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import AdbIcon from '@mui/icons-material/Adb';
 import DayAndNightMaterialUISwitch from "../../../atomic/Switch/DayAndNightSwitch";
-import {RootState} from "../../../../state/store";
-import {useSelector} from "react-redux";
 import {changeTheme} from "../../../../features/app/appSlice";
 import {useAppDispatch} from "../../../../state/hook";
 import {LIGHT_THEME, DARK_THEME} from "../../../../configs/constants";
@@ -22,7 +20,6 @@ function ResponsiveAppBar() {
 
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
-    const theme = useSelector((state: RootState) => state.app.theme);
     const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElUser(event.currentTarget);
     };

@@ -1,7 +1,6 @@
 import {LeaderDBType} from "../../../types/leaderboardTypes";
 import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
-import * as React from "react";
 
 type viewLeader = {
     leaderData: LeaderDBType | undefined;

@@ -1,11 +1,10 @@
 import Stack from '@mui/material/Stack';
 import Leaderboard, {LeaderBoardType} from '../organism/leaderboard/Leaderboard';
 import Button from '../../components/atomic/CustomButton/CustomButton';
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import AddLeaderForm from "../organism/forms/Leader/AddLeaderForm";
 import CustomModal from "../atomic/Modal/CustomModal";
 import Container from "@mui/material/Container";
-import * as React from "react";
 import {FormikHelpers} from "formik";
 import {LeaderDataType} from '../../types/leaderboardTypes';
 
