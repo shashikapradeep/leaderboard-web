@@ -1,0 +1,9 @@
+{
+  "apps":[
+    {
+      "name" : "leaderboard-react-app",
+      "script" : "npm start",
+      "exp_backoff_restart_delay": 100
+    }
+  ]
+}
