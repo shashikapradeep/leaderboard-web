@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material';
+import {createTheme} from '@mui/material';
 
 declare module '@mui/material/styles' {
     interface Palette {
@@ -39,7 +39,6 @@ export default createTheme({
         toastMessage: '#000000',
         background: {
             default: '#EFF2FF',
-            // paper: '#5064F6FF',
         },
         outline: {
             main: 'black',
@@ -49,11 +48,11 @@ export default createTheme({
     typography: {
         fontFamily: 'Roboto, sans-serif',
         fontSize: 12,
-        h1: { fontSize: '3.325rem', fontWeight: 700 },
-        h2: { fontSize: '1.825rem', fontWeight: 700 },
-        h3: { fontFamily: 'Roboto', fontSize: '48px', fontStyle: 'normal', fontWeight: 400, lineHeight: '116.7%' },
-        h4: { fontSize: '1.075rem', fontWeight: 700 },
-        h5: { fontFamily: 'Roboto', fontSize: '24px', fontStyle: 'normal', fontWeight: 400, lineHeight: '133.4%' },
+        h1: {fontSize: '3.325rem', fontWeight: 700},
+        h2: {fontSize: '1.825rem', fontWeight: 700},
+        h3: {fontFamily: 'Roboto', fontSize: '48px', fontStyle: 'normal', fontWeight: 400, lineHeight: '116.7%'},
+        h4: {fontSize: '1.075rem', fontWeight: 700},
+        h5: {fontFamily: 'Roboto', fontSize: '24px', fontStyle: 'normal', fontWeight: 400, lineHeight: '133.4%'},
         h6: {
             fontFamily: 'Roboto',
             fontSize: '20px',
@@ -78,7 +77,7 @@ export default createTheme({
             lineHeight: '143%',
             letterSpacing: '0.17px',
         },
-        caption: { fontFamily: 'Roboto', fontSize: '12px', fontWeight: 400, fontStyle: 'normal', lineHeight: '166%' },
+        caption: {fontFamily: 'Roboto', fontSize: '12px', fontWeight: 400, fontStyle: 'normal', lineHeight: '166%'},
         subtitle1: {
             fontFamily: 'Roboto',
             fontSize: '16px',
@@ -102,31 +101,36 @@ export default createTheme({
         },
     },
     components: {
-        MuiStack:{
-            defaultProps:{
+        MuiStack: {
+            defaultProps: {
                 color: "primary",
             },
         },
-        MuiModal:{
-            defaultProps:{
+        MuiModal: {
+            defaultProps: {
                 color: "primary",
             },
         },
-        MuiTextField:{
-            defaultProps:{
+        MuiTextField: {
+            defaultProps: {
                 variant: "outlined",
                 color: "primary",
             },
         },
-        MuiButton:{
-            defaultProps:{
+        MuiButton: {
+            defaultProps: {
                 variant: "contained",
                 color: "primary"
             },
+            styleOverrides: {
+                root: {
+                    width: '120px'
+                }
+            }
         },
         MuiPaper: {
             styleOverrides: {
-                root: ({ theme }) => ({
+                root: ({theme}) => ({
                     background: theme.palette.background.paper,
                 }),
             },

@@ -7,14 +7,22 @@ import {LeaderDBType} from "../../../types/main";
 import Button from "../../atomic/CustomButton/CustomButton";
 import CustomModal from "../../atomic/Modal/CustomModal";
 import Container from "@mui/material/Container";
+import DeleteIcon from '@mui/icons-material/Delete';
+import PlusIcon from '@mui/icons-material/Add';
+import MinusIcon from '@mui/icons-material/Remove';
+import IconButton from "@mui/material/IconButton";
 
-interface DataTableType extends Omit<LeaderDBType, 'name'> {
+interface DataTableType extends LeaderDBType {
     i?: number,
-    leader: LeaderDBType
+    leader?: LeaderDBType
 }
 
-// @ts-ignore
-const Leaderboard = ({allLeaders, handleAction}) => {
+interface LeaderBoardType {
+    allLeaders: DataTableType[],
+    handleAction: (id: number, context: string) => void
+}
+
+const Leaderboard = ({allLeaders, handleAction}: LeaderBoardType) => {
 
     const [viewLeader, setViewLeader] = useState<LeaderDBType>();
 
@@ -27,6 +35,7 @@ const Leaderboard = ({allLeaders, handleAction}) => {
             dataSet.push({
                 i: ++index,
                 id: leader.id,
+                name: leader.name,
                 leader: leader,
                 age: leader.age,
                 points: leader.points,
@@ -83,28 +92,33 @@ const Leaderboard = ({allLeaders, handleAction}) => {
                         filter: false,
                         sort: false,
                         customBodyRender: (id: number) => {
-                            return <Stack>
+                            return <Stack direction="row" alignItems="center">
                                 {
-                                    <Button label={'x'} onClick={(event) => {
-                                        handleAction(id, 'delete_leader');
-                                    }}
-                                    />
+                                    <Stack mr={3}>
+                                        <IconButton aria-label="increase a point" size="small" onClick={(event) => {
+                                            handleAction(id, 'delete_leader');
+                                        }}>
+                                            <DeleteIcon color={"error"}/>
+                                        </IconButton>
+                                    </Stack>
                                 }
                             </Stack>;
                         }
                     }
                 },
                 {
-                    name: "leader",
+                    name: "name",
                     label: "Name",
                     options: {
                         filter: true,
                         sort: true,
-                        customBodyRender: (leader: LeaderDBType) => {
-                            return <Stack onClick={() => viewLeaderHandler(leader)}>
-                                <Typography>{leader.name}</Typography>
+                        customBodyRender: (name: String, metadata: any) => {
+                            return <Stack
+                                onClick={() => viewLeaderHandler(metadata.rowData[4])}
+                            >
+                                <Typography>{name}</Typography>
                             </Stack>;
-                        }
+                        },
                     }
                 },
                 {
@@ -119,25 +133,27 @@ const Leaderboard = ({allLeaders, handleAction}) => {
                     }
                 },
                 {
-                    name: "id",
+                    name: "leader",
                     label: "Action",
                     options: {
                         filter: false,
                         sort: false,
-                        customBodyRender: (id: number) => {
-                            return <Stack>
-                                {
-                                    <>
-                                        <Button label={'+'} onClick={(event) => {
-                                            handleAction(id, 'increase_leader_score');
-                                        }}
-                                        />
-                                        <Button label={'-'} onClick={(event) => {
-                                            handleAction(id, 'decrease_leader_score');
-                                        }}
-                                        />
-                                    </>
-                                }
+                        customBodyRender: (leader: LeaderDBType) => {
+                            return <Stack direction="row" alignItems="center">
+                                <Stack mr={3}>
+                                    <IconButton aria-label="increase a point" size="small" onClick={(event) => {
+                                        handleAction(leader.id, 'increase_leader_score');
+                                    }}>
+                                        <PlusIcon color="primary"/>
+                                    </IconButton>
+                                </Stack>
+                                <Stack>
+                                    <IconButton aria-label="decerese a point" size="small" onClick={(event) => {
+                                        handleAction(leader.id, 'decrease_leader_score');
+                                    }}>
+                                        <MinusIcon color="primary"/>
+                                    </IconButton>
+                                </Stack>
                             </Stack>;
                         }
                     }
@@ -148,9 +164,9 @@ const Leaderboard = ({allLeaders, handleAction}) => {
 
         const tableOptions = {
             selectableRowsHideCheckboxes: true,
-            // onRowClick: (rowData: any, rowMeta: any) => {
-            //     console.log(rowData);
-            // }
+            onRowClick: (rowData: any, rowMeta: any) => {
+                console.log(rowData);
+            }
         };
 
 

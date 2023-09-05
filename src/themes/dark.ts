@@ -62,7 +62,6 @@ export default createTheme({
         divider: '#2D3A91',
         background: {
             default: '#0A0F28',
-            // paper: '#0E1542',
         },
         text: {
             primary: '#ffffff',
@@ -78,7 +77,7 @@ export default createTheme({
         code: '#34ae6c',
     },
     typography: {
-        fontFamily: 'Poppins, sans-serif',
+        fontFamily: 'Roboto, Poppins, sans-serif',
         fontSize: 12,
         h1: { fontSize: '3.325rem', fontWeight: 700 },
         h2: { fontSize: '1.825rem', fontWeight: 700 },
@@ -154,6 +153,11 @@ export default createTheme({
                 variant: "contained",
                 color: "primary"
             },
+            styleOverrides: {
+                root: {
+                    width: '5rem'
+                }
+            }
         },
         MuiPaper: {
             styleOverrides: {
