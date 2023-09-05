@@ -17,7 +17,7 @@ interface DataTableType extends LeaderDBType {
     leader?: LeaderDBType
 }
 
-interface LeaderBoardType {
+export interface LeaderBoardType {
     allLeaders: DataTableType[],
     handleAction: (id: number, context: string) => void
 }

@@ -10,11 +10,16 @@ export interface LeaderDataType {
     address: string,
 }
 
-const AddLeaderForm = ({onSubmitHandler, initialValues}: any) => {
+export interface AddLeaderFormType {
+    onSubmitHandler: (values: LeaderDataType, props: FormikHelpers<LeaderDataType>) => void;
+    initialValues?: LeaderDataType;
+}
+
+const AddLeaderForm = ({onSubmitHandler, initialValues}: AddLeaderFormType) => {
     const initialValue: LeaderDataType = initialValues ?? {
         name: '',
-        points: '',
-        age: '',
+        points: 0,
+        age: 0,
         address: ''
     };
 

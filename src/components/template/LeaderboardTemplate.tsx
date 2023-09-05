@@ -1,62 +1,45 @@
 import Stack from '@mui/material/Stack';
-import Paper from '@mui/material/Paper';
-import {Modal, styled} from '@mui/material';
-import Leaderboard from '../organism/leaderboard/Leaderboard';
-import {LeaderDBType} from "../../types/main";
+import Leaderboard, {LeaderBoardType} from '../organism/leaderboard/Leaderboard';
 import Button from '../../components/atomic/CustomButton/CustomButton';
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import {useState} from "react";
-import AddLeaderForm from "../organism/forms/Leader/AddLeaderForm";
+import AddLeaderForm, {LeaderDataType} from "../organism/forms/Leader/AddLeaderForm";
+import CustomModal from "../atomic/Modal/CustomModal";
+import Container from "@mui/material/Container";
+import * as React from "react";
+import {FormikHelpers} from "formik";
 
-const StackItem = styled(Paper)(({theme}) => ({
-    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-}));
+interface LeaderBoardTemplateType extends LeaderBoardType{
+    handleCreateLeader: (values: LeaderDataType, props: FormikHelpers<LeaderDataType>) => void;
+    openCreateUserModal: boolean;
+}
 
-const style = {
-    position: 'absolute' as 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
-};
-
-// @ts-ignore
-export default function LeaderboardTemplate({allLeaders, handleAction, handleCreateLeader, openCreateUserModal=false}) {
+export default function LeaderboardTemplate({allLeaders, handleAction, handleCreateLeader, openCreateUserModal=false}:LeaderBoardTemplateType) {
 
     const [open, setOpen] = useState<boolean>(openCreateUserModal);
 
     const handleCreateLeaderModalClose = () => setOpen(false);
     const handleCreateLeaderModalOpen = () => setOpen(true);
+
     const CreateLeaderModal = () => {
-        return <Modal
+        return <CustomModal
             open={open}
             onClose={handleCreateLeaderModalClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
         >
-            <Box sx={style}>
+            <Container>
                 <AddLeaderForm onSubmitHandler={handleCreateLeader}/>
-            </Box>
-        </Modal>
+            </Container>
+        </CustomModal>
     };
+
     return (
-        <Stack>
-            <StackItem>
+        <Stack direction={"column"} gap={3} mx={2}>
+            <Stack direction="row" justifyContent="end">
                 <Button label="Add User" onClick={handleCreateLeaderModalOpen}/>
+            </Stack>
+            <Stack>
                 <CreateLeaderModal/>
-            </StackItem>
-            <StackItem>
                 <Leaderboard allLeaders={allLeaders} handleAction={handleAction}/>
-            </StackItem>
+            </Stack>
         </Stack>
     );
 }

@@ -92,8 +92,8 @@ const Leaderboard = () => {
 
     const handleCreateLeader = (values: LeaderDataType, props: FormikHelpers<LeaderDataType>) => {
         createLeader(values);
-        props.resetForm();
         setOpenCreateModal(false);
+        props.resetForm();
     };
 
     return <>
