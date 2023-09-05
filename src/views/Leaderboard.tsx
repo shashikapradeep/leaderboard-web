@@ -7,6 +7,7 @@ import {useAppDispatch, useAppSelector} from "../state/hook";
 import {LeaderDataType} from "../types/leaderboardTypes";
 import {FormikHelpers} from "formik";
 import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
 
 const Leaderboard = () => {
 
@@ -20,12 +21,18 @@ const Leaderboard = () => {
         fetchLeaders();
     }, []);
 
+    /**
+     * TODO: Following state update functions should be further improved
+     *
+     */
     const fetchLeader = (id: number) => {
         dispatch(setLoader(true));
+        dispatch(setErrorLeader({error: null}));
         getOne(id).then(leader => {
             dispatch(setViewLeader({viewLeader: leader, isLoading: false}));
             dispatch(setLoader(false));
         }).catch((error) => {
+                dispatch(setErrorLeader({error: {fetchLeader: error}}));
                 dispatch(setLoader(false));
             }
         );
@@ -33,10 +40,12 @@ const Leaderboard = () => {
 
     const fetchLeaders = () => {
         dispatch(setLoader(true));
+        dispatch(setErrorLeader({error: null}));
         getAll().then(leaders => {
             dispatch(setAllLeaders({allLeaders: leaders, isLoading: false}));
             dispatch(setLoader(false));
         }).catch((error) => {
+                dispatch(setErrorLeader({error: {fetchLeader: error}}));
                 dispatch(setLoader(false));
             }
         );
@@ -44,7 +53,7 @@ const Leaderboard = () => {
 
     const createLeader = (leaderData: LeaderDataType) => {
         dispatch(setLoader(true));
-        dispatch(setErrorLeader({error: {createLeader: null}}));
+        dispatch(setErrorLeader({error: null}));
         store(leaderData).then(leaders => {
             dispatch(setLoader(false));
             fetchLeaders();
@@ -57,10 +66,12 @@ const Leaderboard = () => {
 
     const deleteLeader = (id: number) => {
         dispatch(setLoader(true));
+        dispatch(setErrorLeader({error: null}));
         remove(id).then(leaders => {
             dispatch(setLoader(false));
             fetchLeaders();
         }).catch((error) => {
+                dispatch(setErrorLeader({error: {deleteLeader: error}}));
                 dispatch(setLoader(false));
             }
         );
@@ -68,10 +79,12 @@ const Leaderboard = () => {
 
     const updateLeaderScore = (id: number, context: string) => {
         dispatch(setLoader(true));
+        dispatch(setErrorLeader({error: null}));
         updateScore(id, context).then(leaders => {
             dispatch(setLoader(false));
             fetchLeaders();
         }).catch((error) => {
+                dispatch(setErrorLeader({error: {updateLeader: error}}));
                 dispatch(setLoader(false));
             }
         );
@@ -94,22 +107,16 @@ const Leaderboard = () => {
 
     const handleCreateLeader = (values: LeaderDataType, props: FormikHelpers<LeaderDataType>) => {
         createLeader(values);
-        setOpenCreateModal(false);
         props.resetForm();
+        setOpenCreateModal(false);
     };
 
-    return <>
+    return <Box m={2}>
         {isLoading && <SpinnerLoader open={isLoading}/>}
-        <h1>Dashboard</h1>
-        <Button onClick={() => createLeader({
-            'name': "shashika",
-            'points': 50,
-            'age': 20,
-            "address": 'Canada'
-        })}>Create Leader</Button>
+        <h2>Dashboard</h2>
         <LeaderboardTemplate allLeaders={allLeaders} handleAction={handleAction}
                              handleCreateLeader={handleCreateLeader} openCreateUserModal={openCreateModal}/>
-    </>;
+    </Box>;
 };
 
 export default Leaderboard;

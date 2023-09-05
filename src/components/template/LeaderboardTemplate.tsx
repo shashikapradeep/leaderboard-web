@@ -1,7 +1,7 @@
 import Stack from '@mui/material/Stack';
 import Leaderboard, {LeaderBoardType} from '../organism/leaderboard/Leaderboard';
 import Button from '../../components/atomic/CustomButton/CustomButton';
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import AddLeaderForm from "../organism/forms/Leader/AddLeaderForm";
 import CustomModal from "../atomic/Modal/CustomModal";
 import Container from "@mui/material/Container";
@@ -11,12 +11,12 @@ import {LeaderDataType} from '../../types/leaderboardTypes';
 
 interface LeaderBoardTemplateType extends LeaderBoardType{
     handleCreateLeader: (values: LeaderDataType, props: FormikHelpers<LeaderDataType>) => void;
-    openCreateUserModal: boolean;
+    openCreateUserModal?: boolean;
 }
 
-export default function LeaderboardTemplate({allLeaders, handleAction, handleCreateLeader, openCreateUserModal=false}:LeaderBoardTemplateType) {
+export default function LeaderboardTemplate({allLeaders, handleAction, handleCreateLeader, openCreateUserModal}:LeaderBoardTemplateType) {
 
-    const [open, setOpen] = useState<boolean>(openCreateUserModal);
+    const [open, setOpen] = useState<boolean>(openCreateUserModal ?? false);
 
     const handleCreateLeaderModalClose = () => setOpen(false);
     const handleCreateLeaderModalOpen = () => setOpen(true);
