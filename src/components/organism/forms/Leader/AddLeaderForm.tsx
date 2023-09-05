@@ -1,6 +1,7 @@
 import {Box, Button, Grid, Paper, TextField} from "@mui/material";
 import {Formik, Form, FormikHelpers, ErrorMessage} from 'formik';
 import AddLeaderValidations from './AddLeaderFormValidation';
+import Stack from '@mui/material/Stack';
 
 export interface LeaderDataType {
     name: string,
@@ -20,17 +21,17 @@ const AddLeaderForm = ({onSubmitHandler, initialValues}: any) => {
     return (
         <Grid container>
             <Grid item xs={12}>
-                <Box>
-                    <h3>Add Leader</h3>
-                    <Formik
-                        initialValues={initialValue}
-                        validationSchema={AddLeaderValidations}
-                        onSubmit={onSubmitHandler}
-                    >
-                        {(props) => {
-                            const {name, points, age, address}: LeaderDataType = props.values;
-                            return (
-                                <Form>
+                <h3>Add Leader</h3>
+                <Formik
+                    initialValues={initialValue}
+                    validationSchema={AddLeaderValidations}
+                    onSubmit={onSubmitHandler}
+                >
+                    {(props) => {
+                        const {name, points, age, address}: LeaderDataType = props.values;
+                        return (
+                            <Form>
+                                <Stack direction={"column"} gap={3}>
                                     <TextField
                                         label="Name"
                                         name="name"
@@ -81,11 +82,11 @@ const AddLeaderForm = ({onSubmitHandler, initialValues}: any) => {
                                     />
                                     <Button type="submit" fullWidth disabled={props.isSubmitting}> Add
                                         Leader </Button>
-                                </Form>
-                            );
-                        }}
-                    </Formik>
-                </Box>
+                                </Stack>
+                            </Form>
+                        );
+                    }}
+                </Formik>
             </Grid>
         </Grid>
     );
