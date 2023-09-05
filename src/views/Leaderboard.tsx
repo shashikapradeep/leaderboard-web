@@ -6,6 +6,7 @@ import LeaderboardTemplate from "../components/template/LeaderboardTemplate";
 import {useAppDispatch, useAppSelector} from "../state/hook";
 import {LeaderDataType} from "../types/leaderboardTypes";
 import {FormikHelpers} from "formik";
+import Button from "@mui/material/Button";
 
 const Leaderboard = () => {
 
@@ -98,6 +99,12 @@ const Leaderboard = () => {
     return <>
         {isLoading && <SpinnerLoader open={isLoading}/>}
         <h1>Dashboard</h1>
+        <Button onClick={() => createLeader({
+            'name': "shashika",
+            'points': 5000,
+            'age': 20,
+            "address" : 'Canada'
+        })}>Create Leader</Button>
         <LeaderboardTemplate allLeaders={allLeaders} handleAction={handleAction}
                              handleCreateLeader={handleCreateLeader} openCreateUserModal={openCreateModal}/>
     </>;

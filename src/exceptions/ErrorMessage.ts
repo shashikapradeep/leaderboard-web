@@ -9,6 +9,7 @@ import {
     UNKNOWN_ERROR_MESSAGE,
     VALIDATION_ERROR_CODES,
 } from '../configs/constants';
+import {responseType} from "../types/apiDataTypes";
 
 class ErrorMessage {
     error: AxiosError;
@@ -22,8 +23,8 @@ class ErrorMessage {
         try {
             const statusCode: number = this.error.response?.status || 400;
             if (ALLOWED_ERROR_CODES.includes(statusCode)) {
-                console.log('Error ==> ', statusCode, this.error);
-                errorMessage = this.error.message ?? DEFAULT_ERROR_MESSAGE;
+                // @ts-ignore
+                errorMessage = this.error.response?.data?.message ?? DEFAULT_ERROR_MESSAGE;
             } else if (INVALID_REQUEST_ERROR_CODES?.includes(statusCode)) {
                 errorMessage = INVALID_REQUEST_ERROR_MESSAGE;
             } else if (VALIDATION_ERROR_CODES.includes(statusCode)) {
@@ -34,7 +35,6 @@ class ErrorMessage {
                 errorMessage = '';
             }
         } catch (e) {
-            console.log('Error ==> ', e);
             errorMessage = UNKNOWN_ERROR_MESSAGE;
         }
         return errorMessage;

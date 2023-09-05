@@ -1,5 +1,6 @@
 import axios, { AxiosInstance, AxiosResponse, AxiosError, InternalAxiosRequestConfig } from 'axios';
 import ErrorMessage from '../../exceptions/ErrorMessage';
+import {configs} from "../../configs/app.config";
 
 class Axios {
     private static instance: AxiosInstance;
@@ -18,7 +19,7 @@ class Axios {
 
     private setupInstance() {
         Axios.instance = axios.create({
-            baseURL: 'http://localhost:8000/api/v1',
+            baseURL: `${configs.base_api_url}/${configs.base_api_module}/${configs.base_api_version}`,
             timeout: this.defaultTimeout,
             headers: this.defaultHeaders,
         });
