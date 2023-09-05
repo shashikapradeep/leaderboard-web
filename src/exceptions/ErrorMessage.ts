@@ -17,14 +17,7 @@ class ErrorMessage {
         this.error = error;
     }
 
-    private checkErrorMessage(): void {
-        const statusCode = this.error.response?.status;
-        const statusMessage: string = this.error.message;
-        console.log('Status Code ==> ', statusCode, statusMessage);
-    }
-
     private getErrorMessage(): string {
-        this.checkErrorMessage();
         let errorMessage = '';
         try {
             const statusCode: number = this.error.response?.status || 400;

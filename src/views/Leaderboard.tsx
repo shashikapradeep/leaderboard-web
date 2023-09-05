@@ -75,7 +75,6 @@ const Leaderboard = () => {
     }
 
     const handleAction = (id: number, context: string) => {
-        console.log(id, context);
         switch (context) {
             case 'delete_leader':
                 deleteLeader(id);

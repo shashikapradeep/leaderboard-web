@@ -35,12 +35,11 @@ class Axios {
 
         Axios.instance.interceptors.response.use(
             (response: AxiosResponse) => {
-                // Modify response data or handle success cases
                 return response;
             },
             (error: AxiosError) => {
-                // Handle error responses
-                return Promise.reject(new ErrorMessage(error).showMessage());
+                new ErrorMessage(error).showMessage();
+                return Promise.reject(error);
             },
         );
     }

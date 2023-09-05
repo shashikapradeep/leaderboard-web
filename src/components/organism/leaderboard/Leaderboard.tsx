@@ -5,11 +5,11 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import {LeaderDBType} from "../../../types/leaderboardTypes";
 import CustomModal from "../../atomic/Modal/CustomModal";
-import Container from "@mui/material/Container";
 import DeleteIcon from '@mui/icons-material/Delete';
 import PlusIcon from '@mui/icons-material/Add';
 import MinusIcon from '@mui/icons-material/Remove';
 import IconButton from "@mui/material/IconButton";
+import ViewLeader from "./ViewLeader";
 
 interface DataTableType extends LeaderDBType {
     i?: number,
@@ -56,20 +56,7 @@ const Leaderboard = ({allLeaders, handleAction}: LeaderBoardType) => {
             open={openLeaderViewModal}
             onClose={() => setOpenLeaderViewModal(false)}
         >
-            <Container>
-                <Stack>
-                    Name: {viewLeader?.name}
-                </Stack>
-                <Stack>
-                    Age: {viewLeader?.age}
-                </Stack>
-                <Stack>
-                    Points: {viewLeader?.points}
-                </Stack>
-                <Stack>
-                    Address: {viewLeader?.address}
-                </Stack>
-            </Container>
+            <ViewLeader leaderData={viewLeader}/>
         </CustomModal>
     };
 
@@ -163,9 +150,9 @@ const Leaderboard = ({allLeaders, handleAction}: LeaderBoardType) => {
 
         const tableOptions = {
             selectableRowsHideCheckboxes: true,
-            onRowClick: (rowData: any, rowMeta: any) => {
-                console.log(rowData);
-            }
+            // onRowClick: (rowData: any, rowMeta: any) => {
+            //     console.log(rowData);
+            // }
         };
 
 

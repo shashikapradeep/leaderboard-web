@@ -1,4 +1,4 @@
-export const ALLOWED_ERROR_CODES = [403, 401, 400, 425, 500, 402, 420];
+export const ALLOWED_ERROR_CODES = [403, 401, 400, 422, 425, 500, 402, 420];
 export const VALIDATION_ERROR_CODES = [422];
 export const INVALID_REQUEST_ERROR_CODES = [404];
 export const SKIP_ERROR_CODES = [521];
