@@ -1,21 +1,17 @@
 import * as React from 'react';
-import Backdrop from '@mui/material/Backdrop';
-import CircularProgress from '@mui/material/CircularProgress';
+import Backdrop, {BackdropProps} from '@mui/material/Backdrop';
+import CircularProgress, {CircularProgressProps} from '@mui/material/CircularProgress';
 
-const SpinnerLoader = () => {
-    const [open, setOpen] = React.useState(true);
-    const onClick = (e:any) => {
-          e.preventDefault();
-          setOpen(false);
-    };
+const SpinnerLoader = ({open = true}: BackdropProps) => {
+    const [show, setShow] = React.useState(open);
 
     return (
         <div>
             <Backdrop
-                sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-                open={open}
+                sx={{color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1}}
+                open={show}
             >
-                <CircularProgress color="inherit" onClick={onClick} />
+                <CircularProgress color="inherit"/>
             </Backdrop>
         </div>
     );

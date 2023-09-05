@@ -97,7 +97,7 @@ const Leaderboard = () => {
     };
 
     return <>
-        {isLoading && <SpinnerLoader/>}
+        {isLoading && <SpinnerLoader open={isLoading}/>}
         <h1>Dashboard</h1>
         <LeaderboardTemplate allLeaders={allLeaders} handleAction={handleAction}
                              handleCreateLeader={handleCreateLeader} openCreateUserModal={openCreateModal}/>

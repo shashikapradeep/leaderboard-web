@@ -8,7 +8,6 @@ import Dark from "./themes/dark";
 
 function App() {
     const themeType = useSelector<any>(state => state.app.theme);
-    console.log(themeType);
     return (
         <ThemeProvider theme={themeType === 'light' ? Light : Dark}>
             <RouterProvider router={router()}/>

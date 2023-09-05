@@ -28,7 +28,6 @@ const AddLeaderForm = ({onSubmitHandler, initialValues}: any) => {
                         onSubmit={onSubmitHandler}
                     >
                         {(props) => {
-                            console.log("Props", props);
                             const {name, points, age, address}: LeaderDataType = props.values;
                             return (
                                 <Form>

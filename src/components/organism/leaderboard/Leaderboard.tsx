@@ -5,9 +5,6 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import {LeaderDBType} from "../../../types/main";
 import Button from "../../atomic/CustomButton/CustomButton";
-import {Grid, Modal} from "@mui/material";
-import Box from "@mui/material/Box";
-import AddLeaderForm from "../forms/Leader/AddLeaderForm";
 import CustomModal from "../../atomic/Modal/CustomModal";
 import Container from "@mui/material/Container";
 
@@ -25,7 +22,6 @@ const Leaderboard = ({allLeaders, handleAction}) => {
     const [openLeaderViewModal, setOpenLeaderViewModal] = useState<boolean>(false);
 
     useEffect(() => {
-        console.log("Leaderboard Organisms => ", allLeaders);
         let dataSet: DataTableType[] = [];
         allLeaders?.forEach((leader: LeaderDBType, index: number) => {
             dataSet.push({
@@ -42,7 +38,7 @@ const Leaderboard = ({allLeaders, handleAction}) => {
         setTableDataSet(dataSet);
     }, [allLeaders]);
 
-    const viewLeaderHandler = (leader:LeaderDBType) => {
+    const viewLeaderHandler = (leader: LeaderDBType) => {
         setViewLeader(leader);
         setOpenLeaderViewModal(true);
     }
@@ -50,7 +46,7 @@ const Leaderboard = ({allLeaders, handleAction}) => {
     const LeaderViewModal = () => {
         return <CustomModal
             open={openLeaderViewModal}
-            onClose={()=>setOpenLeaderViewModal(false)}
+            onClose={() => setOpenLeaderViewModal(false)}
         >
             <Container>
                 <Stack>

@@ -133,6 +133,16 @@ export default createTheme({
         },
     },
     components: {
+        MuiStack:{
+            defaultProps:{
+                color: "primary",
+            },
+        },
+        MuiModal:{
+            defaultProps:{
+                color: "primary",
+            }
+        },
         MuiTextField:{
             defaultProps:{
                 variant: "outlined",
