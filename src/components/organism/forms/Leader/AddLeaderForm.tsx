@@ -13,8 +13,8 @@ export interface LeaderDataType {
 const AddLeaderForm = ({onSubmitHandler, initialValues}: any) => {
     const initialValue: LeaderDataType = initialValues ?? {
         name: '',
-        points: 0,
-        age: 0,
+        points: '',
+        age: '',
         address: ''
     };
 
@@ -53,6 +53,7 @@ const AddLeaderForm = ({onSubmitHandler, initialValues}: any) => {
                                         onBlur={props.handleBlur}
                                         helperText={<ErrorMessage name="points"/>}
                                         error={Boolean(props.errors.points && props.touched.points)}
+                                        required
                                     />
 
                                     <TextField
@@ -80,8 +81,10 @@ const AddLeaderForm = ({onSubmitHandler, initialValues}: any) => {
                                         error={Boolean(props.errors.address && props.touched.address)}
                                         required
                                     />
-                                    <Button type="submit" fullWidth disabled={props.isSubmitting}> Add
-                                        Leader </Button>
+                                    <Stack direction="row" justifyContent="end">
+                                        <Button type="submit" fullWidth disabled={props.isSubmitting}> Add
+                                            Leader </Button>
+                                    </Stack>
                                 </Stack>
                             </Form>
                         );
